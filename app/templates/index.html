@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/img_home.css">
+    <link rel="stylesheet" href="../static/menu.css">
+    <title>Projeto</title>
+</head>
+<body background="https://preview.ait-themes.club/theme-fw1/touroperator/wp-content/uploads/sites/18/2013/07/tour-bg.jpg
+">
+    <div class="bemVindo">
+    <h1 >Nexttravel.com</h1>
+    </div>
+
+    <div class="full">
+
+        <nav id="menu-h">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Quem somos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+        
+        <div id="slider">
+            <img  src="http://www.terraparque.tur.br/wp-content/uploads/2018/09/123.jpg" alt="">
+            <img  src="https://paratyexplorer.com.br/wp-content/uploads/2017/08/passeio-de-barco-Paraty-Explorer-privativo-rom%C3%A2ntico-e-locais-Vips-scaled.jpg" alt="">
+            <img  src="https://aspp.tur.br/wp-content/uploads/2015/08/Sal04.jpg" alt="">
+            <img  src="https://drkleiner.com.br/wp-content/uploads/2017/02/se-divertir-sem-gastar-muito-passeio-no-parque-.jpg"  alt="">
+            <img  src="https://www.guiadoesporte.com/wp-content/uploads/cache/images/Parque-Passeio-Publico/Parque-Passeio-Publico-2023132374.jpg" alt="">
+        </div>
+        <script type="text/javascript" src="../static/script.js"></script>
+        
+        <div class="all">
+            <div class="text">
+                <h2><span class="spanSejaBemVindo"> Olá, seja bem vindo! </span><br>
+                    Aqui mostramos uma visão geral das viagens compartilhadas pelos membros.
+                    Basta um clique em <span class="span">saiba mais</span>, para obter mais detalhes.
+                    Divida conosco suas experiências,  adicione sugestões, dicas 
+                    e imagens de lugares interessantes, clicando no ícone de <svg xmlns="http://www.w3.org/2000/svg"  id= "icone" width="25" height="30" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                        <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                      </svg> . <br> Unidos nos divertimos mais </h2>
+            </div> 
+        
+            {% for cidade in cidades %}
+            <div class="card">
+        
+                <div class="titulo_cidade">
+                    <h2>{{cidade.nome}} - {{cidade.estado}}</h2>
+                    <a href="/update/{{cidade.id}}" style="text-decoration: none;color: black;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </a>
+                </div>
+        
+                <div class="img_cidade">
+                    <img src="{{cidade.imagem_url}}" alt="{{cidade.nome}}">
+                </div>
+                <ul>
+                    {% for ponto_t in pontos_t %}
+                        {%if ponto_t.id_cidade == cidade.id%}
+                        <li>
+                            {%for imagem in imagens_url%}
+                                {%if ponto_t.id == imagem.id_ponto_turistico %}
+                                    <div class="block">
+                                        <img src="{{imagem.url}}" alt="{{imagem.id}}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="content">
+                                <h3>{{ponto_t.nome}}</h3>
+                                
+                                <a href="/{{ponto_t.id}}" >Saiba mais</a>
+                                
+                            </div>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            <div class="card add">
+                <a href="/create">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                        <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                      </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

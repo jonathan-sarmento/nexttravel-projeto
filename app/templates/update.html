@@ -1,0 +1,113 @@
+
+    {%extends 'layout.html' %}
+
+    {% block body%}
+    <link rel="stylesheet" href="../static/modal.css">
+    <link rel="stylesheet" href="../static/pages/update.css">
+    <div class="container">
+        {% if sucesso %}
+
+            {% if sucesso == 1 %}
+            <div class="campo">
+                <h2>Local editado com sucesso!</h2>
+            </div>
+            {% else %}
+            <div class="campo">
+                <h2>Local deletado com sucesso!</h2>
+            </div>
+            {% endif %}
+
+        {% else %}
+
+        <form method="POST">
+            <p class="cidade">Cidade</p>
+            <div class="campo">
+                <input type="text" name="estado" placeholder="Ex: AM" value="{{cidade.estado}}" required>
+                <label for="estado">Informe o Estado <span>*</span>:</label>
+            </div>
+            
+            <div class="campo">
+                
+                <input type="text" name="cidade" placeholder="Ex: Manaus" value="{{cidade.nome}}" required>
+                <label for="cidade">Informe a cidade <span>*</span>:</label>
+            </div>
+            <div class="campo">
+                <input type="text" name="descricao" value="{{cidade.descricao}}">
+                <label for="descricao">Informe uma descrição da cidade:</label>
+            </div>
+            <div class="campo">
+                <input type="text" name="imagem_url" placeholder="Ex: https://www.google.com" value="{{cidade.imagem_url}}">
+                <label for="imagem_url">URL da imagem da cidade:</label>
+            </div>
+            <p>Ponto turístico</p>            
+            <div class="campo">
+                
+                <div class="ponto">
+                    <ul style="list-style-type: none;">
+                        <li>
+                            <div class="campo">
+                                <input type="text" name="nome-ponto_turistico" value="{{ponto_t.nome}}" required>
+                                <label for="nome-ponto_turistico">Nome do local <span>*</span>:</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="campo">
+                                
+                                <input type="text" name="descricao-ponto_turistico" value="{{ponto_t.descricao}}">
+                                <label for="descricao-ponto_turistico">Descrição:</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="campo">
+                                <input type="text" name="url_imagem-ponto_turistico" placeholder="Ex: https://www.google.com" value="{{imagem_url.url}}">
+                                <label for="url_imagem-ponto_turistico">URL da imagem do local:</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="campo">
+                <input type="text" name="alimentacao" value="{{cidade.alimentacao}}">
+                <label for="alimentacao">Dica de restaurante:</label>
+            </div>
+            
+            <div class="campo">
+                <input type="text" name="hospedagem" value="{{cidade.hospedagem}}">
+                <label for="hospedagem">Dica de hospedagem:</label>
+            </div>
+
+            <input type="submit" value="Salvar" class="opcao">
+            <input type="button" value="Deletar registro" class="opcao" id="deletar">
+        </form>
+
+        {% endif %}
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Excluir registro</h2>
+                </div>
+                <div class="modal-body">
+                <p>Deseja excluir o registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="botao close" value="Cancelar">
+                    <form method="POST">
+                        <input type="submit" class="botao close" value="Confirmar" name="delete">
+                    </form>
+                
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../static/modal.js"></script>
+        <script src="../static/create.js"></script>
+    </div>
+
+    {% endblock %}

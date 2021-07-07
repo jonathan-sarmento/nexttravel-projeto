@@ -1,0 +1,74 @@
+
+    {%extends 'layout.html' %}
+
+    {%block body%}
+    <link rel="stylesheet" href="../static/pages/create.css">
+    {% if sucesso %}
+
+    <div class="campo">
+        <h2>Local adicionado!</h2>
+    </div>
+    
+    {% else %}
+
+    <form method="POST">
+        <div class="campo">
+            
+            <input type="text" name="estado" placeholder="Ex: AM" required>
+            <label for="estado">Informe o Estado <span>*</span>:</label>
+        </div>
+        
+        <div class="campo">
+            <input type="text" name="cidade" placeholder="Ex: Manaus" required>
+            <label for="cidade">Informe a cidade <span>*</span>:</label>
+        </div>
+        <div class="campo">
+            <input type="text" name="descricao">
+            <label for="descricao">Informe uma descrição da cidade:</label>
+        </div>
+        <div class="campo">
+            <input type="text" name="imagem_url" placeholder="Ex: https://www.google.com">
+            <label for="imagem_url">URL da imagem da cidade:</label>
+        </div>
+        
+        <div class="campo">
+            <p>Ponto turístico</p>
+            <ul style="list-style-type: none;">
+                <li>
+                    <div class="campo">
+                        <input type="text" name="nome-ponto_turistico" required>
+                        <label for="nome-ponto_turistico">Nome do local <span>*</span>:</label>
+                    </div>
+                </li>
+                <li>
+                    <div class="campo">
+                        <input type="text" name="descricao-ponto_turistico">
+                        <label for="descricao-ponto_turistico">Descrição:</label>
+                    </div>
+                </li>
+                <li>
+                    <div class="campo">
+                        <input type="text" name="url_imagem-ponto_turistico" placeholder="Ex: https://www.google.com">
+                        <label for="url_imagem-ponto_turistico">URL da imagem do local:</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="campo">
+            <input type="text" name="alimentacao">
+            <label for="alimentacao">Dica de restaurante:</label>
+        </div>
+        
+        <div class="campo">
+            <input type="text" name="hospedagem">
+            <label for="hospedagem">Dica de hospedagem:</label>
+        </div>
+
+        <input id='botao'type="submit" value="Enviar">
+    </form>
+
+    {% endif %}
+    <script src="../static/create.js"></script>
+
+    {% endblock %}

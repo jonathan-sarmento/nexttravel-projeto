@@ -1,0 +1,19 @@
+    
+    {% extends 'layout.html' %}
+
+    {% block body %}
+    <div class="container">
+        <link rel="stylesheet" href="../static/pages/tp.css">
+        
+        <h2>{{ponto_t.nome}}</h2>
+        {%for imagem in imagens%}
+        <img src="{{imagem.url}}" alt="{{ponto_t.nome}}">
+        {% endfor%}
+        <h3>Descrição:</h3>
+        <p>{{ponto_t.descricao}}</p>
+        <p><span>Dica de alimentação: </span>{{cidade.alimentacao}}</p>
+        <p><span>Dica de hospedagem: </span>{{cidade.hospedagem}}</p>
+        <a href="">Ver preços de passagens</a>
+    </div>
+    
+    {% endblock %}
