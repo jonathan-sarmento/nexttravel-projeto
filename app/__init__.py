@@ -17,6 +17,7 @@ from app.database import Cidades, Pontos_turisticos, Imagens_url, close_connecti
 
 @app.route('/')
 def index():
+    close_connection()
     cidades = Cidades.read_all()
     pontos_turisticos = Pontos_turisticos.read_all()
     imagens_url = Imagens_url.read_all()
@@ -25,6 +26,7 @@ def index():
     
 @app.route('/<id_ponto_t>')
 def saiba_mais(id_ponto_t):
+    close_connection()
     ponto_t = Pontos_turisticos.read_single(id_ponto_t)
     
     imagens = Imagens_url.query.filter_by(id_ponto_turistico=id_ponto_t).all()
@@ -34,12 +36,13 @@ def saiba_mais(id_ponto_t):
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
+    close_connection()
     sucesso = False
 
     if request.method == 'POST':
         form = request.form
 
-        cidade = Cidades(form['estado'], form['cidade'], form['descricao'], form['imagem_url'], form['alimentacao'], form['hospedagem'])
+        cidade = Cidades(form['estado'], form['cidade'], form['imagem_url'], form['alimentacao'], form['hospedagem'])
         cidade.save()
     
         ponto_turistico = Pontos_turisticos(form['nome-ponto_turistico'], form['descricao-ponto_turistico'], cidade.id)
@@ -67,7 +70,7 @@ def update(cidade_id):
         form = request.form
 
         if form.get('delete') == None:
-            new_data = Cidades(form['estado'], form['cidade'], form['descricao'], form['imagem_url'], form['alimentacao'], form['hospedagem'])
+            new_data = Cidades(form['estado'], form['cidade'], form['imagem_url'], form['alimentacao'], form['hospedagem'])
             cidade.update(new_data)
             
             new_data = Pontos_turisticos(form['nome-ponto_turistico'], form['descricao-ponto_turistico'], cidade_id)
@@ -85,4 +88,19 @@ def update(cidade_id):
 
     return render_template('update.html', sucesso=sucess, cidade=cidade, ponto_t=ponto_turistico, imagem_url=imagem_url)
 
-    
+@app.route('/sobre')
+def sobre():
+    close_connection()
+    return render_template('sobre.html')
+
+@app.route('/motivacao')
+def motivacao():
+    close_connection()
+    return render_template('motivacao.html')
+
+@app.route('/contato')
+def contato():
+    close_connection()
+    return render_template('contato.html')
+
+

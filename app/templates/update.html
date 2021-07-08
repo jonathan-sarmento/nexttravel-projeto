@@ -11,9 +11,15 @@
             <div class="campo">
                 <h2>Local editado com sucesso!</h2>
             </div>
+            <div class="voltar">
+                <a href="/">Ir para a home</a>
+            </div>
             {% else %}
             <div class="campo">
                 <h2>Local deletado com sucesso!</h2>
+            </div>
+            <div class="voltar">
+                <a href="/">Ir para a home</a>
             </div>
             {% endif %}
 
@@ -22,18 +28,13 @@
         <form method="POST">
             <p class="cidade">Cidade</p>
             <div class="campo">
-                <input type="text" name="estado" placeholder="Ex: AM" value="{{cidade.estado}}" required>
+                <input type="text" name="estado" placeholder="Ex: AM" value="{{cidade.estado}}" required maxlength="2">
                 <label for="estado">Informe o Estado <span>*</span>:</label>
             </div>
             
             <div class="campo">
-                
                 <input type="text" name="cidade" placeholder="Ex: Manaus" value="{{cidade.nome}}" required>
                 <label for="cidade">Informe a cidade <span>*</span>:</label>
-            </div>
-            <div class="campo">
-                <input type="text" name="descricao" value="{{cidade.descricao}}">
-                <label for="descricao">Informe uma descrição da cidade:</label>
             </div>
             <div class="campo">
                 <input type="text" name="imagem_url" placeholder="Ex: https://www.google.com" value="{{cidade.imagem_url}}">
@@ -53,7 +54,7 @@
                         <li>
                             <div class="campo">
                                 
-                                <input type="text" name="descricao-ponto_turistico" value="{{ponto_t.descricao}}">
+                                <textarea type="text" name="descricao-ponto_turistico">{{ponto_t.descricao}}</textarea>
                                 <label for="descricao-ponto_turistico">Descrição:</label>
                             </div>
                         </li>
@@ -68,12 +69,12 @@
             </div>
             
             <div class="campo">
-                <input type="text" name="alimentacao" value="{{cidade.alimentacao}}">
+                <textarea type="text" name="alimentacao">{{cidade.alimentacao}}</textarea>
                 <label for="alimentacao">Dica de restaurante:</label>
             </div>
             
             <div class="campo">
-                <input type="text" name="hospedagem" value="{{cidade.hospedagem}}">
+                <textarea type="text" name="hospedagem">{{cidade.hospedagem}}</textarea>
                 <label for="hospedagem">Dica de hospedagem:</label>
             </div>
 
@@ -107,7 +108,7 @@
         </div>
 
         <script src="../static/modal.js"></script>
-        <script src="../static/create.js"></script>
+        <script src="../static/input.js"></script>
     </div>
 
     {% endblock %}

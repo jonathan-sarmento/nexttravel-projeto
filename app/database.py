@@ -11,23 +11,21 @@ class Cidades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     estado = db.Column(db.String(3), nullable=False)
     nome = db.Column(db.String(50), nullable=False)
-    descricao = db.Column(db.Text, nullable=False)
     imagem_url = db.Column(db.String(255))
     alimentacao = db.Column(db.Text)
     hospedagem = db.Column(db.Text)
     #pontos_turisticos = db.relationship('Pontos_turisticos', back_populates="capitais", uselist=False)
 
-    def __init__(self, estado, nome, descricao, imagem_url, alimentacao='', hospedagem=''):
+    def __init__(self, estado, nome, imagem_url, alimentacao='', hospedagem=''):
         self.estado = estado
         self.nome = nome
-        self.descricao = descricao
         self.imagem_url = imagem_url
         self.alimentacao = alimentacao
         self.hospedagem = hospedagem
 
     @staticmethod
     def read_all():
-        var = Cidades.query.all()
+        var = Cidades.query.order_by(Cidades.estado.asc(), Cidades.nome.asc()).all()
         close_connection() 
         return var
 
