@@ -48,7 +48,6 @@ class Cidades(db.Model):
     def update(self, new_data):
         self.estado = new_data.estado
         self.nome = new_data.nome
-        self.descricao = new_data.descricao
         self.imagem_url = new_data.imagem_url
         self.alimentacao = new_data.alimentacao
         self.hospedagem = new_data.hospedagem
